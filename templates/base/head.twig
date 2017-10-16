@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ base_url() }}/favicon.ico">
+
+    <title>Project name</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ base_url() }}/css/narrow-jumbotron.css" rel="stylesheet">
+    <link href="{{ base_url() }}/css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a {% if is_current_path('home') %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ path_for('home') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            {% if auth.check %}
+              <li class="nav-item">
+                <a {% if is_current_path('auth.login') %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ path_for('auth.login') }}">{{auth.user.email}}</a>
+              </li>
+              <li class="nav-item">
+                <a {% if is_current_path('auth.logout') %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ path_for('auth.logout') }}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a {% if is_current_path('auth.login') %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ path_for('auth.login') }}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a {% if is_current_path('auth.register') %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{{ path_for('auth.register') }}">Register</a>
+              </li>
+              
+            {% endif %}
+          </ul>
+        </nav>
+        <h3 class="text-muted">Project name</h3>
+      </div>

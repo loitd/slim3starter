@@ -1,0 +1,31 @@
+{% extends '/base/default.twig' %}
+
+{% block content %}
+
+	<div class="card">
+    <div class="card-header"><h4>Login</h4></div>
+    <div class="card-body">
+      <p class="card-text">
+        <form action="{{ path_for('auth.login') }}" method="POST">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control{{ errors.email ? ' is-invalid' : ''}}" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{oldinput.email}}">
+            {% if errors.email %}
+              <small class="help-block">{{ errors.email | first }}</small>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control {{errors.password ? ' is-invalid' : ''}}" id="password" placeholder="Password" name="password">
+            {% if errors.password %}
+              <small class="help-block">{{ errors.password | first }}</small>
+            {% endif %}
+          </div>
+          {{csrfv.field | raw}}
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </p>
+    </div>
+  </div>
+	
+{% endblock %}
